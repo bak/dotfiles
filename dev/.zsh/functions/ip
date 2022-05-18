@@ -1,0 +1,5 @@
+LOCAL=$(ipconfig getifaddr en0)
+EXTERNAL=$(curl --silent http://icanhazip.com)
+
+echo "Local IP:    $LOCAL"
+echo "External IP: $EXTERNAL"

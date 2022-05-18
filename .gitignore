@@ -1,0 +1,8 @@
+.DS_Store
+dev/.config/coc/*
+dev/.config/configstore/*
+dev/.config/gh/*
+dev/.config/iterm2/*
+dev/.config/karabiner/automatic_backups/*
+dev/.config/nvim/plugged/*
+dev/.local/
