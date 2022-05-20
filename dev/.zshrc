@@ -109,3 +109,5 @@ source /usr/local/opt/chruby/share/chruby/auto.sh
 chruby 3.1.0
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f "/Users/bencullen-kerney/.ghcup/env" ] && source "/Users/bencullen-kerney/.ghcup/env" # ghcup-env
