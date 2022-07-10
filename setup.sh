@@ -37,6 +37,9 @@ $(brew --prefix)/opt/fzf/install
 echo "👉 Symlinking vim to nvim"
 ln -s /usr/local/bin/nvim /usr/local/bin/vim
 
+echo "👉 installing terminal color schemes"
+open shared/wwdc16-*.itermcolors
+
 echo "🙌 All done!"
 echo "- Be sure to create an ssh keypair if this is a new machine"
 echo "- Be sure to install GPG key data (gpg --import /Path/To/File.asc)"
