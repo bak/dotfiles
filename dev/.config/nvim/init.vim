@@ -29,7 +29,6 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'neovim/nvim-lspconfig'
-Plug 'neovimhaskell/haskell-vim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
@@ -51,6 +50,12 @@ colorscheme dim
 
 " Turn on line numbers
 set number
+
+" Make focused window bigger, and others smaller but equal
+set winwidth=1000
+set winminwidth=12
+set equalalways
+
 
 " Completion
 set completeopt=menu,menuone,noselect
@@ -126,8 +131,8 @@ nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>f <cmd>lua require('telescope.builtin').grep_string()<cr>
 
 " Configure ALE
-let g:ale_linters = {'ruby': ['standardrb'], 'javascript': ['eslint'], 'haskell': []}
-let g:ale_fixers = {'ruby': ['standardrb'], 'javascript': ['eslint'], 'haskell': []}
+let g:ale_linters = {'ruby': ['standardrb'], 'javascript': ['eslint']}
+let g:ale_fixers = {'ruby': ['standardrb'], 'javascript': ['eslint']}
 let g:ale_set_highlights = 1
 let g:ale_sign_warning = '.'
 let g:ale_sign_error = '●'
