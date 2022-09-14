@@ -20,6 +20,9 @@ fi
 echo "👉 Stowing files under dev/"
 stow dev
 
+echo "👉 symlinking .zshrc to .zshenv for vim"
+ln -s ~/.zshrc ~/.zshenv
+
 echo "👉 Signing in to MAS"
 brew install mas
 mas signin --dialog $EMAIL
@@ -35,7 +38,7 @@ echo "👉 Installing FZF auto-completion and key bindings"
 $(brew --prefix)/opt/fzf/install
 
 echo "👉 Symlinking vim to nvim"
-ln -s /usr/local/bin/nvim /usr/local/bin/vim
+ln -s /opt/homebrew/bin/nvim /opt/homebrew/bin/vim
 
 echo "🙌 All done!"
 echo "- Be sure to create an ssh keypair if this is a new machine"

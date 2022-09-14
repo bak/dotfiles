@@ -64,7 +64,6 @@ PROMPT=$'%D{%T} %{${fg[yellow]}%}%~/$(prompt_git_info)%{${fg[default]}%} %# '
 eval "$(direnv hook zsh)"
 
 export EDITOR="vim"
-alias vimz="vim \$(fzf)"
 
 if [ -f "${HOME}/.gemrc.local" ]; then
   export GEMRC="${HOME}/.gemrc.local"
@@ -81,16 +80,15 @@ alias ttt='tree -L 3'
 export HOMEBREW_NO_ANALYTICS=1
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-export GOPATH="$HOME/work/go"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/share/npm/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/sbin:$PATH"
+export PATH="/opt/homebrew/share/npm/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 export PATH="./bin:$PATH"
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="$PATH:$(go env GOPATH)/bin"
-export PATH="$PATH:/usr/local/opt/go/libexec/bin"
-export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+export PATH="/opt/homebrew/opt/qt@5.5/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
@@ -103,11 +101,10 @@ export NODE_VERSION_PREFIX=v
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git' "
 
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 
 chruby 3.1.0
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-[ -f "/Users/bencullen-kerney/.ghcup/env" ] && source "/Users/bencullen-kerney/.ghcup/env" # ghcup-env
+eval "$(/opt/homebrew/bin/brew shellenv)"

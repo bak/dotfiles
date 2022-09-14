@@ -1,6 +1,5 @@
 [user]
 	name = Ben Cullen-Kerney
-	email = ben@beancuke.com
 [github]
 	user = bak
 [alias]
@@ -29,7 +28,6 @@
 	ui = auto
 [commit]
 	template = ~/.default_commit_message
-	gpgsign = true
   verbose = true
 [pull]
 	rebase = true
