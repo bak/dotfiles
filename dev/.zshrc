@@ -87,9 +87,6 @@ export PATH="/usr/local/share/npm/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 export PATH="./bin:$PATH"
 export PATH="/usr/local/opt/ruby/bin:$PATH"
-export PATH="/usr/local/opt/qt@5.5/bin:$PATH"
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
-export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
@@ -103,6 +100,6 @@ export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git' "
 source /usr/local/opt/chruby/share/chruby/chruby.sh
 source /usr/local/opt/chruby/share/chruby/auto.sh
 
-chruby 3.1.2
+chruby ruby-3.1.2
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

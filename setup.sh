@@ -20,6 +20,9 @@ fi
 echo "👉 Stowing files under dev/"
 stow dev
 
+echo "👉 symlinking .zshrc to .zshenv for vim"
+ln -s ~/.zshrc ~/.zshenv
+
 echo "👉 Signing in to MAS"
 brew install mas
 mas signin --dialog $EMAIL
