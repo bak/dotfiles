@@ -61,8 +61,6 @@ chpwd_functions+='chpwd_update_git_vars'
 
 PROMPT=$'%D{%T} %{${fg[yellow]}%}%~/$(prompt_git_info)%{${fg[default]}%} %# '
 
-eval "$(direnv hook zsh)"
-
 export EDITOR="vim"
 
 if [ -f "${HOME}/.gemrc.local" ]; then
@@ -96,15 +94,17 @@ export PATH="$HOME/.local/bin:$PATH"
 export NVM_DIR="$HOME/.nvm"
 export NODE_VERSIONS=$NVM_DIR/versions/node
 export NODE_VERSION_PREFIX=v
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git' "
 
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 
-chruby 3.1.0
+chruby 3.2.0
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+eval "$(direnv hook zsh)"
