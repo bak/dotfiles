@@ -11,25 +11,22 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
-  use { -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    requires = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-      'j-hui/fidget.nvim', -- Useful status updates for LSP
-      'folke/neodev.nvim', -- Additional lua configuration tools
-    },
-  }
+  -- use { -- LSP Configuration & Plugins
+  --   'neovim/nvim-lspconfig',
+  --   requires = {
+  --     'j-hui/fidget.nvim', -- Useful status updates for LSP
+  --     'folke/neodev.nvim', -- Additional lua configuration tools
+  --   },
+  -- }
 
   use { -- Autocompletion
     'hrsh7th/nvim-cmp',
     requires = {
-      'hrsh7th/cmp-nvim-lsp',
+      -- 'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'ray-x/cmp-treesitter',
-      'L3MON4D3/LuaSnip',
-      'saadparwaiz1/cmp_luasnip'
+      -- 'L3MON4D3/LuaSnip',
+      -- 'saadparwaiz1/cmp_luasnip'
     },
   }
 
@@ -45,7 +42,7 @@ require('packer').startup(function(use)
     after = 'nvim-treesitter',
   }
 
-  use 'mfussenegger/nvim-lint' -- async linting
+  -- use 'mfussenegger/nvim-lint' -- async linting
 
   -- Git related plugins
   use 'tpope/vim-fugitive'
@@ -63,9 +60,9 @@ require('packer').startup(function(use)
   use 'tpope/vim-rails' -- Rails-specific, mostly for the navigation
   use 'tpope/vim-repeat' -- use . for Plugin map actions
   use 'tpope/vim-endwise' -- automatically close methods, blocks, loops. Uses vim-repeat
-  use 'tpope/vim-speeddating' -- make <C-A> and <C-X> work on dates. Uses vim-repeat
-  use 'anuvyklack/middleclass' -- OO system used in windows.nvim
-  use 'anuvyklack/windows.nvim' -- autoflex/maximize/equalize split sizes
+  -- use 'anuvyklack/middleclass' -- OO system used in windows.nvim
+  -- use 'anuvyklack/windows.nvim' -- autoflex/maximize/equalize split sizes
+  -- use 'vim-ruby/vim-ruby' -- ruby support
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
@@ -178,31 +175,36 @@ require('lualine').setup {
 }
 
 -- Configure window maximize/equalize
-require('windows').setup()
-vim.keymap.set('n', '<C-w>z', '<Cmd>WindowsMaximize<CR>')
-vim.keymap.set('n', '<C-w>e', '<Cmd>WindowsEqualize<CR>')
+-- require('windows').setup()
+-- vim.keymap.set('n', '<C-w>z', '<Cmd>WindowsMaximize<CR>')
+-- vim.keymap.set('n', '<C-w>e', '<Cmd>WindowsEqualize<CR>')
 
 -- Configure async linters
 --
 -- standardrb returns nonzero when it has diagnostics
-local standardrb = require('lint.linters.standardrb')
-standardrb.ignore_exitcode = true
+-- local standardrb = require('lint.linters.standardrb')
+-- standardrb.ignore_exitcode = true
 
-require('lint').linters_by_ft = {
-  ruby = {'standardrb',},
-  javascript = {'eslint',},
-  typescript = {'eslint',},
-}
-vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  callback = function()
-    require("lint").try_lint()
-  end,
-})
-vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-  callback = function()
-    require("lint").try_lint()
-  end,
-})
+-- require('lint').linters_by_ft = {
+--   ruby = {'standardrb',},
+--   javascript = {'eslint',},
+--   typescript = {'eslint',},
+-- }
+-- vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+--   callback = function()
+--     require("lint").try_lint()
+--   end,
+-- })
+-- vim.api.nvim_create_autocmd({ "InsertLeave" }, {
+--   callback = function()
+--     require("lint").try_lint()
+--   end,
+-- })
+-- vim.api.nvim_create_autocmd({ "TextChanged" }, {
+--   callback = function()
+--     require("lint").try_lint()
+--   end,
+-- })
 
 -- Enable Comment.nvim
 require('Comment').setup()
@@ -240,10 +242,10 @@ end, { desc = '[/] Fuzzily search in current buffer]' })
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'css', 'javascript', 'go', 'lua', 'php', 'python', 'ruby', 'rust', 'typescript', 'vim', 'help' },
+  ensure_installed = { 'c', 'css', 'javascript', 'go', 'lua', 'php', 'python', 'ruby', 'rust', 'typescript', 'vim', 'help' },
 
   highlight = { enable = true },
-  indent = { enable = true, disable = { 'python' } },
+  indent = { enable = true, disable = { 'python', 'ruby' } },
   incremental_selection = {
     enable = true,
     keymaps = {
@@ -305,111 +307,111 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
 
--- LSP settings.
---  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
-  -- NOTE: Remember that lua is a real programming language, and as such it is possible
-  -- to define small helper and utility functions so you don't have to repeat yourself
-  -- many times.
-  --
-  -- In this case, we create a function that lets us more easily define mappings specific
-  -- for LSP related items. It sets the mode, buffer and description for us each time.
-  local nmap = function(keys, func, desc)
-    if desc then
-      desc = 'LSP: ' .. desc
-    end
-
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
-  end
-
-  nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-  nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-
-  nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-  nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-  nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
-
-  -- See `:help K` for why this keymap
-  nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-  -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, '[W]orkspace [L]ist Folders')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
-end
-
--- Enable the following language servers
---  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+-- -- LSP settings.
+-- --  This function gets run when an LSP connects to a particular buffer.
+-- local on_attach = function(_, bufnr)
+--   -- NOTE: Remember that lua is a real programming language, and as such it is possible
+--   -- to define small helper and utility functions so you don't have to repeat yourself
+--   -- many times.
+--   --
+--   -- In this case, we create a function that lets us more easily define mappings specific
+--   -- for LSP related items. It sets the mode, buffer and description for us each time.
+--   local nmap = function(keys, func, desc)
+--     if desc then
+--       desc = 'LSP: ' .. desc
+--     end
 --
---  Add any additional override configuration in the following tables. They will be passed to
---  the `settings` field of the server config. You must look up that documentation yourself.
-local servers = {
-  -- clangd = {},
-  -- gopls = {},
-  -- pyright = {},
-  -- rust_analyzer = {},
-  tsserver = {},
-  ruby_ls = {},
-
-  sumneko_lua = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
-}
+--     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+--   end
+--
+--   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+--   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
+--
+--   nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
+--   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+--   nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
+--   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
+--   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
+--   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+--
+--   -- See `:help K` for why this keymap
+--   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+--   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+--
+--   -- Lesser used LSP functionality
+--   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+--   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+--   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+--   nmap('<leader>wl', function()
+--     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+--   end, '[W]orkspace [L]ist Folders')
+--
+--   -- Create a command `:Format` local to the LSP buffer
+--   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+--     vim.lsp.buf.format()
+--   end, { desc = 'Format current buffer with LSP' })
+-- end
+--
+-- -- Enable the following language servers
+-- --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
+-- --
+-- --  Add any additional override configuration in the following tables. They will be passed to
+-- --  the `settings` field of the server config. You must look up that documentation yourself.
+-- local servers = {
+--   -- clangd = {},
+--   -- gopls = {},
+--   -- pyright = {},
+--   -- rust_analyzer = {},
+--   tsserver = {},
+--   -- ruby_ls = {},
+--
+--   sumneko_lua = {
+--     Lua = {
+--       workspace = { checkThirdParty = false },
+--       telemetry = { enable = false },
+--     },
+--   },
+-- }
 
 -- Setup neovim lua configuration
-require('neodev').setup()
+-- require('neodev').setup()
 --
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- Setup mason so it can manage external tooling
-require('mason').setup()
-
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
-
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-    }
-  end,
-}
+-- -- Setup mason so it can manage external tooling
+-- require('mason').setup()
+--
+-- -- Ensure the servers above are installed
+-- local mason_lspconfig = require 'mason-lspconfig'
+--
+-- mason_lspconfig.setup {
+--   ensure_installed = vim.tbl_keys(servers),
+-- }
+--
+-- mason_lspconfig.setup_handlers {
+--   function(server_name)
+--     require('lspconfig')[server_name].setup {
+--       capabilities = capabilities,
+--       on_attach = on_attach,
+--       settings = servers[server_name],
+--     }
+--   end,
+-- }
 
 -- Turn on lsp status information
-require('fidget').setup()
-
+-- require('fidget').setup()
+--
 -- nvim-cmp setup
 local cmp = require 'cmp'
-local luasnip = require 'luasnip'
-
+-- local luasnip = require 'luasnip'
+--
 cmp.setup {
   snippet = {
-    expand = function(args)
-      luasnip.lsp_expand(args.body)
-    end,
+    -- expand = function(args)
+    --   luasnip.lsp_expand(args.body)
+    -- end,
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
@@ -417,13 +419,13 @@ cmp.setup {
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
-      select = true,
+      select = false,
     },
     ['<Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
+      -- elseif luasnip.expand_or_jumpable() then
+      --   luasnip.expand_or_jump()
       else
         fallback()
       end
@@ -431,18 +433,18 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      -- elseif luasnip.jumpable(-1) then
+      --   luasnip.jump(-1)
       else
         fallback()
       end
     end, { 'i', 's' }),
   },
   sources = {
-    { name = 'nvim_lsp' },
+    -- { name = 'nvim_lsp' },
     { name = 'buffer' },
     { name = 'treesitter' },
-    { name = 'luasnip' },
+    -- { name = 'luasnip' },
   },
 }
 

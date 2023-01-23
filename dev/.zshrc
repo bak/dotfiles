@@ -78,32 +78,33 @@ alias ttt='tree -L 3'
 export HOMEBREW_NO_ANALYTICS=1
 export NVIM_TUI_ENABLE_TRUE_COLOR=1
 
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/opt/homebrew/bin:$PATH"
-export PATH="/opt/homebrew/sbin:$PATH"
-export PATH="/opt/homebrew/share/npm/bin:$PATH"
+HOMEBREW_PREFIX=$(brew --prefix)
+export FPATH="${HOMEBREW_PREFIX}/share/zsh/site-functions:${FPATH}"
+
+export PATH="/${HOMEBREW_PREFIX}/bin:$PATH"
+export PATH="/${HOMEBREW_PREFIX}/sbin:$PATH"
+export PATH="/${HOMEBREW_PREFIX}/share/npm/bin:$PATH"
 export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
 export PATH="./bin:$PATH"
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-export PATH="/opt/homebrew/opt/qt@5.5/bin:$PATH"
+export PATH="/${HOMEBREW_PREFIX}/opt/ruby/bin:$PATH"
+export PATH="/${HOMEBREW_PREFIX}/opt/qt@5.5/bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 export NODE_VERSIONS=$NVM_DIR/versions/node
 export NODE_VERSION_PREFIX=v
-[ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && . "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+[ -s "/${HOMEBREW_PREFIX}/opt/nvm/nvm.sh" ] && . "/${HOMEBREW_PREFIX}/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm" ] && . "/${HOMEBREW_PREFIX}/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 export FZF_DEFAULT_COMMAND="rg --files --hidden -g '!.git' "
 
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+source /${HOMEBREW_PREFIX}/opt/chruby/share/chruby/chruby.sh
+source /${HOMEBREW_PREFIX}/opt/chruby/share/chruby/auto.sh
 
 chruby 3.2.0
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-eval "$(/opt/homebrew/bin/brew shellenv)"
+eval "$(/${HOMEBREW_PREFIX}/bin/brew shellenv)"
 
 eval "$(direnv hook zsh)"
