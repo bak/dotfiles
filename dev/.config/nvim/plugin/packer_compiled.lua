@@ -49,8 +49,8 @@ local function save_profiles(threshold)
 end
 
 time([[Luarocks path setup]], true)
-local package_path_str = "/Users/beancuke/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/beancuke/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/beancuke/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/beancuke/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
-local install_cpath_pattern = "/Users/beancuke/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
+local package_path_str = "/Users/bcullenkerney/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?.lua;/Users/bcullenkerney/.cache/nvim/packer_hererocks/2.1.0-beta3/share/lua/5.1/?/init.lua;/Users/bcullenkerney/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?.lua;/Users/bcullenkerney/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/luarocks/rocks-5.1/?/init.lua"
+local install_cpath_pattern = "/Users/bcullenkerney/.cache/nvim/packer_hererocks/2.1.0-beta3/lib/lua/5.1/?.so"
 if not string.find(package.path, package_path_str, 1, true) then
   package.path = package.path .. ';' .. package_path_str
 end
@@ -76,54 +76,54 @@ time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["Comment.nvim"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/Comment.nvim",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/Comment.nvim",
     url = "https://github.com/numToStr/Comment.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/cmp-buffer",
     url = "https://github.com/hrsh7th/cmp-buffer"
   },
   ["cmp-treesitter"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/cmp-treesitter",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/cmp-treesitter",
     url = "https://github.com/ray-x/cmp-treesitter"
   },
   ["lualine.nvim"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/lualine.nvim",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-surround"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/nvim-surround",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/nvim-surround",
     url = "https://github.com/kylechui/nvim-surround"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-treesitter-textobjects"] = {
     load_after = {},
     loaded = true,
     needs_bufread = false,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/opt/nvim-treesitter-textobjects",
     url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
   ["telescope-fzf-native.nvim"] = {
@@ -131,67 +131,67 @@ _G.packer_plugins = {
     loaded = false,
     needs_bufread = false,
     only_cond = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/opt/telescope-fzf-native.nvim",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/opt/telescope-fzf-native.nvim",
     url = "https://github.com/nvim-telescope/telescope-fzf-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["vim-dim"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/vim-dim",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/vim-dim",
     url = "https://github.com/jeffkreeftmeijer/vim-dim"
   },
   ["vim-dispatch"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/vim-dispatch",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/vim-dispatch",
     url = "https://github.com/tpope/vim-dispatch"
   },
   ["vim-endwise"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/vim-endwise",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/vim-endwise",
     url = "https://github.com/tpope/vim-endwise"
   },
   ["vim-fugitive"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/vim-fugitive",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/vim-fugitive",
     url = "https://github.com/tpope/vim-fugitive"
   },
   ["vim-numbertoggle"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/vim-numbertoggle",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/vim-numbertoggle",
     url = "https://github.com/jeffkreeftmeijer/vim-numbertoggle"
   },
   ["vim-polyglot"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/vim-polyglot",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/vim-polyglot",
     url = "https://github.com/sheerun/vim-polyglot"
   },
   ["vim-rails"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/vim-rails",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/vim-rails",
     url = "https://github.com/tpope/vim-rails"
   },
   ["vim-repeat"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/vim-repeat",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
   },
   ["vim-rhubarb"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/vim-rhubarb",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/vim-rhubarb",
     url = "https://github.com/tpope/vim-rhubarb"
   },
   ["vim-sleuth"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/vim-sleuth",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/vim-sleuth",
     url = "https://github.com/tpope/vim-sleuth"
   },
   ["vim-vinegar"] = {
     loaded = true,
-    path = "/Users/beancuke/.local/share/nvim/site/pack/packer/start/vim-vinegar",
+    path = "/Users/bcullenkerney/.local/share/nvim/site/pack/packer/start/vim-vinegar",
     url = "https://github.com/tpope/vim-vinegar"
   }
 }

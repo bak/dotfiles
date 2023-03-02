@@ -1,6 +1,6 @@
 [user]
 	name = Ben Cullen-Kerney
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHy/eQ9MfMOu0yD03k846J6rpPT0ijfWkOzOFT/QkQkL ben@beancuke.com
+	; signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHy/eQ9MfMOu0yD03k846J6rpPT0ijfWkOzOFT/QkQkL ben@beancuke.com
 [github]
 	user = bak
 [alias]
