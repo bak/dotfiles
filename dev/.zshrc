@@ -87,6 +87,7 @@ export PATH="${HOMEBREW_PREFIX}/share/npm/bin:$PATH"
 export PATH="./bin:$PATH"
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/work/bin:$PATH"
 export PATH="/opt/homebrew/opt/openssl@3/bin:$PATH"
 
 # IF NEEDS NVM

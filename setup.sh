@@ -32,7 +32,7 @@ brew tap Homebrew/bundle
 brew bundle --global
 
 echo "👉 Setting Homebrew's zsh"
-sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
+sudo dscl . -create /Users/$USER UserShell /opt/homebrew/bin/zsh
 
 echo "👉 Installing FZF auto-completion and key bindings"
 $(brew --prefix)/opt/fzf/install
